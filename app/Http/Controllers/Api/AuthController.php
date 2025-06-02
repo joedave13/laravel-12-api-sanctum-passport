@@ -35,7 +35,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Unauthenticated'], 401);
         }
 
-        $accessToken = $user->createToken('auth_token')->plainTextToken;
+        $accessToken = $user->createToken('api_token')->accessToken;
 
         return new AuthResource(['user' => $user, 'access_token' => $accessToken]);
     }
