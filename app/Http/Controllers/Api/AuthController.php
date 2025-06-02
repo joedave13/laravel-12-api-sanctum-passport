@@ -20,7 +20,7 @@ class AuthController extends Controller
 
         $user = User::query()->create($data);
 
-        $accessToken = $user->createToken('auth_token')->plainTextToken;
+        $accessToken = $user->createToken('api_token')->accessToken;
 
         return new AuthResource(['user' => $user, 'access_token' => $accessToken]);
     }
