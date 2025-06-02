@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
 use App\Http\Resources\AuthResource;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,5 +38,10 @@ class AuthController extends Controller
         $accessToken = $user->createToken('auth_token')->plainTextToken;
 
         return new AuthResource(['user' => $user, 'access_token' => $accessToken]);
+    }
+
+    public function user(Request $request)
+    {
+        return new UserResource($request->user());
     }
 }
